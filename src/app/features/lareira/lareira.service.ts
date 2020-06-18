@@ -19,4 +19,21 @@ export class LareiraService {
     findAll(): Observable<LareiraDTO> {
         return this.http.get<LareiraDTO>(`${this.lareiraUrl}`);
     }
+
+    find(id: number): Observable<LareiraDTO> {
+        return this.http.get<LareiraDTO>(`${this.lareiraUrl}/${id}`);
+    }
+
+    insert(lareira: LareiraDTO): Observable<LareiraDTO> {
+        return this.http.post<LareiraDTO>(`${this.lareiraUrl}`, lareira);
+    }
+
+    update(id: number, lareira: LareiraDTO): Observable<LareiraDTO> {
+        return this.http.put<LareiraDTO>(`${this.lareiraUrl}/${id}`, lareira);
+    }
+
+    delete(id: number): Observable<LareiraDTO> {
+        return this.http.delete<LareiraDTO>(`${this.lareiraUrl}/${id}`);
+    }
+
 }
