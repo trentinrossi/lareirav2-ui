@@ -1,28 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MessageService } from 'primeng';
 import { throwError } from 'rxjs';
 
 @Injectable()
-export class ErrorHandlerService {
+export class ErrorHandlerService implements ErrorHandler {
 
     constructor(
         private messageService: MessageService
     ) { }
 
-    handle(error: HttpErrorResponse) {
+    handleError(error: any): void {
         let msg: string;
 
-        // else if (errorResponse instanceof NotAuthenticatedError) {
-        //     msg = 'Sua sessão expirou!';
-        //     this.router.navigate(['/login']);
+        if (typeof error === 'string') {
+            msg = error;
 
-        // }
-        if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-        } else if (error.status >= 400 && error.status <= 499) {
+        } else if (error instanceof HttpErrorResponse
+            && error.status >= 400 && error.status <= 499) {
             msg = 'Ocorreu um erro ao processar a sua solicitação';
 
             if (error.status === 403) {
@@ -37,12 +33,9 @@ export class ErrorHandlerService {
 
         } else {
             msg = 'Erro ao processar serviço remoto. Tente novamente.';
-            console.error('Ocorreu um erro', error);
+            console.error('Ocorreu um erro', msg);
         }
 
         this.messageService.add({ severity: 'error', detail: msg });
-
-        return throwError('Something is wrong');
     }
-
 }

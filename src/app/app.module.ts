@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -97,6 +97,8 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './core/menu/app.menu.service';
+import { ErrorHandlerService } from './core/interceptors/error-interceptor';
+import { MessageService } from 'primeng';
 
 @NgModule({
     imports: [
@@ -194,8 +196,15 @@ import { MenuService } from './core/menu/app.menu.service';
         DocumentationComponent
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CarService, CountryService, EventService, NodeService, MenuService
+        {
+            provide: LocationStrategy, useClass: HashLocationStrategy
+        },
+        EventService,
+        NodeService,
+        MenuService,
+        ErrorHandlerService,
+        {provide: ErrorHandler, useClass: ErrorHandlerService},
+        MessageService
     ],
     bootstrap: [AppComponent]
 })
