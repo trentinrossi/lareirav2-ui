@@ -97,8 +97,6 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './core/menu/app.menu.service';
-import { CasalCadastroComponent } from './features/casal/casal-cadastro/casal-cadastro.component';
-import { CasalPesquisaComponent } from './features/casal/casal-pesquisa/casal-pesquisa.component';
 
 @NgModule({
     imports: [
@@ -193,9 +191,7 @@ import { CasalPesquisaComponent } from './features/casal/casal-pesquisa/casal-pe
         ChartsDemoComponent,
         EmptyDemoComponent,
         FileDemoComponent,
-        DocumentationComponent,
-        CasalCadastroComponent,
-        CasalPesquisaComponent
+        DocumentationComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
