@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.col-acoes {
+    width: 90px;
+    text-align: center;
+  }
+
+input.ng-dirty.ng-invalid {
+    color: red
+}
+
+.ui-inputtext.ng-dirty {
+    border-color: #ccc !important;
+}
