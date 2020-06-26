@@ -1,3 +1,4 @@
+import { LoginComponent } from './core/login/login.component';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -180,6 +181,7 @@ import { MessageService } from 'primeng';
         AppMenuitemComponent,
         AppTopBarComponent,
         AppFooterComponent,
+        LoginComponent,
         DashboardDemoComponent,
         SampleDemoComponent,
         FormsDemoComponent,
@@ -203,7 +205,7 @@ import { MessageService } from 'primeng';
         NodeService,
         MenuService,
         ErrorHandlerService,
-        {provide: ErrorHandler, useClass: ErrorHandlerService},
+        { provide: ErrorHandler, useClass: ErrorHandlerService },
         MessageService
     ],
     bootstrap: [AppComponent]

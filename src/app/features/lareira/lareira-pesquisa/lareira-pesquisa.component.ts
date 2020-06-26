@@ -1,3 +1,4 @@
+import { AuthService } from './../../../core/auth/auth.service';
 import { LareiraService } from './../lareira.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,6 +14,7 @@ export class LareiraPesquisaComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+
         this.service.findAll()
             .subscribe(resp => {
                 console.log(resp);

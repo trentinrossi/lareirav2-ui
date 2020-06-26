@@ -1,3 +1,4 @@
+import { LoginComponent } from './core/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
@@ -17,6 +18,7 @@ import { DocumentationComponent } from './demo/view/documentation.component';
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent },
     { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule' },
+    { path: 'login', component: LoginComponent },
     { path: 'components/sample', component: SampleDemoComponent },
     { path: 'components/forms', component: FormsDemoComponent },
     { path: 'components/data', component: DataDemoComponent },
