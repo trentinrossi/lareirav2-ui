@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoginComponent } from './core/login/login.component';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -98,7 +99,6 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './core/menu/app.menu.service';
-import { ErrorHandlerService } from './core/interceptors/error.interceptor';
 import { MessageService } from 'primeng';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
@@ -205,9 +205,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
         EventService,
         NodeService,
         MenuService,
-        ErrorHandlerService,
-        { provide: ErrorHandler, useClass: ErrorHandlerService },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         MessageService
     ],
     bootstrap: [AppComponent]
