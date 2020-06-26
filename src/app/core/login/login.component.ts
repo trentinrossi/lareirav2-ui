@@ -12,8 +12,8 @@ import { CredenciaisDTO } from 'src/app/shared/models/credenciais.dto';
 export class LoginComponent {
 
     creds: CredenciaisDTO = {
-        email: 'cascavelsc@lareira.com',
-        senha: '123'
+        email: '',
+        senha: ''
     };
 
     constructor(
@@ -22,7 +22,7 @@ export class LoginComponent {
         private router: Router
     ) { }
 
-    login(usuario: string, senha: string) {
+    login() {
         this.auth.authenticate(this.creds)
             .subscribe(response => {
                 // console.log(response);

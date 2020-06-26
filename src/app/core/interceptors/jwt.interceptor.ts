@@ -3,8 +3,12 @@ import { Injectable, Inject, forwardRef } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+/**
+ * Adiciona no Header de todas as chamadas para o Backend o token do usuário logado
+ */
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+
     // Adicionado o forwardRef para prevenir um erro https://github.com/angular/angular/issues/18224
     constructor(@Inject(forwardRef(() => AuthService)) private auth: AuthService) { }
 
