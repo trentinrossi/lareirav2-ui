@@ -14,11 +14,12 @@ export class ErrorHandlerService implements ErrorHandler {
     handleError(error: any): void {
         let msg: string;
 
+        console.error(error);
+
         if (typeof error === 'string') {
             msg = error;
 
-        } else if (error instanceof HttpErrorResponse
-            && error.status >= 400 && error.status <= 499) {
+        } else if (error instanceof HttpErrorResponse && error.status >= 400 && error.status <= 499) {
             msg = 'Ocorreu um erro ao processar a sua solicitação';
 
             if (error.status === 403) {

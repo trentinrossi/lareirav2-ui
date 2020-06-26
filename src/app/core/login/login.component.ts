@@ -24,8 +24,10 @@ export class LoginComponent {
 
     login(usuario: string, senha: string) {
         this.auth.authenticate(this.creds)
-            .subscribe(() => {
-                this.router.navigate(['/dashboard']);
+            .subscribe(response => {
+                // console.log(response);
+
+                this.router.navigate(['/']);
             });
     }
 }

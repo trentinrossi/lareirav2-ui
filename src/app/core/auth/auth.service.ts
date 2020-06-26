@@ -15,8 +15,9 @@ export class AuthService {
 
     authenticate(credenciais: CredenciaisDTO) {
         return this.http.post(`${environment.api.baseUrl}/login`, credenciais)
-            .pipe(map(user => {
-                localStorage.setItem('currentUser', JSON.stringify(user));
+            .pipe(map((res: any) => {
+                localStorage.setItem('token', JSON.stringify(res.jsonToken));
+                return res;
             }));
     }
 }
