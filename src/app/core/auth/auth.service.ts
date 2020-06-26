@@ -13,10 +13,16 @@ export class AuthService {
         public http: HttpClient
     ) { }
 
-    authenticate(credenciais: CredenciaisDTO) {
-        return this.http.post(`${environment.api.baseUrl}/login`, credenciais)
+    public getToken(): string {
+        return localStorage.getItem('token');
+    }
+
+    public authenticate(credenciais: CredenciaisDTO) {
+        return this.http.post(`${environment.api.baseUrl}/login`, credenciais, { observe: 'response' })
             .pipe(map((res: any) => {
-                localStorage.setItem('token', JSON.stringify(res.jsonToken));
+                console.log(res);
+
+                localStorage.setItem('token', res.headers.get('Authorization'));
                 return res;
             }));
     }

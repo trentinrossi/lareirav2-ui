@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { ErrorHandlerService } from '../interceptors/error-interceptor';
+import { ErrorHandlerService } from '../interceptors/error.interceptor';
 import { CredenciaisDTO } from 'src/app/shared/models/credenciais.dto';
 
 @Component({

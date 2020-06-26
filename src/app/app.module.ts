@@ -1,7 +1,7 @@
 import { LoginComponent } from './core/login/login.component';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -98,8 +98,9 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './core/menu/app.menu.service';
-import { ErrorHandlerService } from './core/interceptors/error-interceptor';
+import { ErrorHandlerService } from './core/interceptors/error.interceptor';
 import { MessageService } from 'primeng';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
     imports: [
@@ -206,6 +207,7 @@ import { MessageService } from 'primeng';
         MenuService,
         ErrorHandlerService,
         { provide: ErrorHandler, useClass: ErrorHandlerService },
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         MessageService
     ],
     bootstrap: [AppComponent]
