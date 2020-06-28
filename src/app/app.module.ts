@@ -1,3 +1,4 @@
+import { ForbiddenComponent } from './demo/view/forbidden.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoginComponent } from './core/login/login.component';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -196,7 +197,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
         ChartsDemoComponent,
         EmptyDemoComponent,
         FileDemoComponent,
-        DocumentationComponent
+        DocumentationComponent,
+        ForbiddenComponent
     ],
     providers: [
         {

@@ -1,3 +1,4 @@
+import { ForbiddenComponent } from './demo/view/forbidden.component';
 import { LoginComponent } from './core/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -19,6 +20,8 @@ export const routes: Routes = [
     { path: '', component: DashboardDemoComponent },
     { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule' },
     { path: 'login', component: LoginComponent },
+    { path: 'forbidden', component: ForbiddenComponent },
+
     { path: 'components/sample', component: SampleDemoComponent },
     { path: 'components/forms', component: FormsDemoComponent },
     { path: 'components/data', component: DataDemoComponent },

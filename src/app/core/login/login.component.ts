@@ -21,7 +21,7 @@ export class LoginComponent {
     ) { }
 
     login() {
-        this.auth.authenticate(this.creds)
+        this.auth.login(this.creds)
             .subscribe(response => {
                 // console.log(response);
 
