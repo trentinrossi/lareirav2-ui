@@ -19,7 +19,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent },
-    { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule', canActivate: [AuthGuard] },
+    { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule' },
     { path: 'login', component: LoginComponent },
     { path: 'forbidden', component: ForbiddenComponent },
 

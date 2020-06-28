@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
     private userSubject: BehaviorSubject<UserDTO>;
-    private refreshTokenTimeout: NodeJS.Timeout;
+    private refreshTokenTimeout;
     public user: Observable<UserDTO>;
 
     constructor(
