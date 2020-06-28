@@ -15,10 +15,11 @@ import { EmptyDemoComponent } from './demo/view/emptydemo.component';
 import { ChartsDemoComponent } from './demo/view/chartsdemo.component';
 import { FileDemoComponent } from './demo/view/filedemo.component';
 import { DocumentationComponent } from './demo/view/documentation.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent },
-    { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule' },
+    { path: 'lareira', loadChildren: './features/lareira/lareira.module#LareiraModule', canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'forbidden', component: ForbiddenComponent },
 
