@@ -14,13 +14,13 @@
 
 
     <div class="layout-main">
-        <app-topbar></app-topbar>
+        <app-topbar *ngIf="user"></app-topbar>
 
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
 
-        <app-footer></app-footer>
+        <app-footer *ngIf="user"></app-footer>
 
         <div class="layout-main-mask"></div>
     </div>

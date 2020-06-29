@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { CredenciaisDTO } from 'src/app/shared/models/credenciais.dto';
+import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -9,6 +10,8 @@ import { CredenciaisDTO } from 'src/app/shared/models/credenciais.dto';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+    error = '';
 
     creds: CredenciaisDTO = {
         email: '',
@@ -22,10 +25,16 @@ export class LoginComponent {
 
     login() {
         this.auth.login(this.creds)
-            .subscribe(response => {
-                // console.log(response);
+            .pipe(first())
+            .subscribe(
+                response => {
+                    // console.log(response);
 
-                this.router.navigate(['/']);
-            });
+                    this.router.navigate(['/']);
+                },
+                error => {
+                    this.error = error;
+                    // this.loading = false;
+                });
     }
 }

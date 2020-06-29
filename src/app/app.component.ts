@@ -1,3 +1,5 @@
+import { UserDTO } from './shared/models/user.dto';
+import { AuthService } from './core/auth/auth.service';
 import { Component } from '@angular/core';
 import { MenuService } from './core/menu/app.menu.service';
 
@@ -8,39 +10,37 @@ import { MenuService } from './core/menu/app.menu.service';
 })
 export class AppComponent {
 
+    user: UserDTO;
     menuMode = 'static';
-
     topbarMenuActive: boolean;
-
     overlayMenuActive: boolean;
-
     slimMenuActive: boolean;
-
     slimMenuAnchor: boolean;
-
     toggleMenuActive: boolean;
-
     staticMenuDesktopInactive: boolean;
-
     staticMenuMobileActive: boolean;
-
     lightMenu = true;
-
     menuClick: boolean;
-
     topbarItemClick: boolean;
-
     activeTopbarItem: any;
-
     resetMenu: boolean;
-
     menuHoverActive: boolean;
-
     rightPanelActive: boolean;
-
     rightPanelClick: boolean;
 
-    constructor(private menuService: MenuService) { }
+    constructor(
+        private menuService: MenuService,
+        private authService: AuthService) {
+        this.authService.user.subscribe(x => this.user = x);
+    }
+
+    // get isAdmin() {
+    //     return this.user && this.user.perfis.find('ADMIN');
+    // }
+
+    logout() {
+        this.authService.logout();
+    }
 
     onLayoutClick() {
         if (!this.topbarItemClick) {
