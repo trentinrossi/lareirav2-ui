@@ -25,7 +25,7 @@
         <div class="layout-main-mask"></div>
     </div>
 
-    <app-rightpanel></app-rightpanel>
+    <app-rightpanel *ngIf="user"></app-rightpanel>
 
-    <app-menu></app-menu>
+    <app-menu *ngIf="user"></app-menu>
 </div>

@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <script>document.write('<base href="' + document.location + '" />');</script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Sistema Gestão de Lareiras - Login</title>
-
-    <link rel="stylesheet" type="text/css" href="../../../assets/layout/css/layout-blue-grey.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/theme/theme-blue-grey.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/pages/primeng.min.css">
-</head>
-
 <body class="login-body container">
     <div class="login-panel ui-fluid">
         <div class="ui-g">
@@ -28,7 +12,7 @@
                     </div>
                     <div class="ui-g-12">
                         <div class="input-wrapper">
-                            <input pInputText type="email" name="usuario" placeholder="E-mail" [(ngModel)]="creds.email" required #usuario>
+                            <input pInputText type="email" name="usuario" placeholder="Login" [(ngModel)]="creds.email" required #usuario>
                             <i class="fa fa-user"></i>
                         </div>
                     </div>
@@ -48,5 +32,3 @@
         </div>
     </div>
 </body>
-
-</html>

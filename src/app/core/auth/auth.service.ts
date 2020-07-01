@@ -19,10 +19,9 @@ export class AuthService {
         private router: Router,
         public http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<UserDTO>(null);
+        this.userSubject = new BehaviorSubject<UserDTO>(JSON.parse(localStorage.getItem('loggedUser')));
         this.user = this.userSubject.asObservable();
     }
-
 
     public get userValue(): UserDTO {
         return this.userSubject.value;
@@ -35,11 +34,12 @@ export class AuthService {
     login(credenciais: CredenciaisDTO) {
         return this.http.post(`${environment.api.baseUrl}/login`, credenciais, { observe: 'response' })
             .pipe(map((res: any) => {
-                console.log(res);
+                // console.log(res);
                 localStorage.setItem('token', res.headers.get('Authorization'));
                 this.getUserByEmail(credenciais.email).subscribe(user => {
-                    console.log('Retornou usuário do e-mail: ' + user);
+                    // console.log('Retornou usuário do e-mail: ' + user.email);
                     user.token = this.getToken();
+                    localStorage.setItem('loggedUser', JSON.stringify(user));
                     this.userSubject.next(user);
                     this.startRefreshTokenTimer();
                     return user;
@@ -50,6 +50,7 @@ export class AuthService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('token');
+        localStorage.removeItem('loggedUser');
         this.stopRefreshTokenTimer();
         this.userSubject.next(null);
         this.router.navigate(['/login']);

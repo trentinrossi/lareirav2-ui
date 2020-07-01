@@ -1,5 +1,8 @@
+import { MenuItem } from 'primeng/primeng';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
+import { UserDTO } from 'src/app/shared/models/user.dto';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-menu',
@@ -7,9 +10,15 @@ import { AppComponent } from '../../app.component';
 })
 export class AppMenuComponent implements OnInit {
 
-    model: any[];
+    model: MenuItem[];
 
-    constructor(public app: AppComponent) { }
+    loggedUser: UserDTO;
+
+    constructor(
+        public app: AppComponent,
+        private authService: AuthService) {
+        this.loggedUser = this.authService.userValue;
+    }
 
     ngOnInit() {
         this.model = [

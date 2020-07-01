@@ -9,7 +9,7 @@ const routes: Routes = [
         path: '',
         component: LareiraPesquisaComponent,
         canActivate: [AuthGuard],
-        data: { perfis: ['ADMIN', 'CLIENTE'] }
+        data: { perfis: ['ADMIN'] }
     },
     {
         path: 'nova',

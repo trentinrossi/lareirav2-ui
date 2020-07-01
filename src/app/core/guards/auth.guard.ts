@@ -11,7 +11,10 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;
+        // console.log(user);
+
         if (user) {
+            // console.log('Usuário logado: ' + user.nome);
 
             // Verifica se os perfis da rota corresponde a algum perfil do usuário logado
             for (const perfil of user.perfis) {
@@ -19,8 +22,11 @@ export class AuthGuard implements CanActivate {
                     return true;
                 }
             }
+            this.router.navigate(['/forbidden'], { queryParams: { returnUrl: state.url } });
             return false;
         } else {
+            // console.log('Não está logado');
+
             // not logged in so redirect to login page with the return url
             this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
             return false;

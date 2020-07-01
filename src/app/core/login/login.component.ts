@@ -29,8 +29,7 @@ export class LoginComponent {
             .subscribe(
                 response => {
                     // console.log(response);
-
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/dashboard']);
                 },
                 error => {
                     this.error = error;
