@@ -10,7 +10,12 @@
 
     <div class="layout-menu-container">
         <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            <div *ngIf="loggedUser.perfis.indexOf('ADMIN') !== -1">
+                <li app-menuitem *ngFor="let item of modelAdmin; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            </div>
+            <div *ngIf="loggedUser.perfis.indexOf('CLIENTE') !== -1">
+                <li app-menuitem *ngFor="let item of modelCliente; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            </div>
         </ul>
     </div>
 </div>

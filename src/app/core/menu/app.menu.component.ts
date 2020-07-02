@@ -10,7 +10,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class AppMenuComponent implements OnInit {
 
-    model: MenuItem[];
+    modelAdmin: any[];
+    modelCliente: any[];
 
     loggedUser: UserDTO;
 
@@ -21,7 +22,7 @@ export class AppMenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.model = [
+        this.modelAdmin = [
             { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
             {
                 label: 'Cadastros', icon: 'fa fa-fw fa-bars',
@@ -29,6 +30,16 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Lareiras', icon: 'fa fa-fw fa-code', routerLink: ['/lareira'] },
                 ]
             },
+            {
+                label: 'Casais', icon: 'fa fa-fw fa-bars',
+                items: [
+                    { label: 'Cadastro', icon: 'fa fa-fw fa-code', routerLink: ['/casal'] }
+                ]
+            }
+        ];
+
+        this.modelCliente = [
+            { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
             {
                 label: 'Casais', icon: 'fa fa-fw fa-bars',
                 items: [

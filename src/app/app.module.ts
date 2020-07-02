@@ -78,7 +78,7 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { AppComponent } from './app.component';
 import { AppRightPanelComponent } from './core/rightpanel/app.rightpanel.component';
 import { AppMenuComponent } from './core/menu/app.menu.component';
-import { AppMenuitemComponent } from './app.menuitem.component';
+import { AppMenuitemComponent } from './core/menu/app.menuitem.component';
 import { AppTopBarComponent } from './core/topbar/app.topbar.component';
 import { AppFooterComponent } from './core/footer/app.footer.component';
 import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
