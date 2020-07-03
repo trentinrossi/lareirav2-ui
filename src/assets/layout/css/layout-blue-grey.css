@@ -557,6 +557,9 @@ a {
   .layout-wrapper.layout-static.layout-static-inactive .layout-main .layout-topbar {
     width: 100%;
   }
+  .layout-wrapper.layout-static.layout-static-inactive .layout-main .layout-footer {
+    width: 100%;
+  }
   .layout-wrapper.layout-overlay .layout-sidebar {
     left: -270px;
   }
