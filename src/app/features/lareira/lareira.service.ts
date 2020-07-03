@@ -16,8 +16,8 @@ export class LareiraService {
         this.lareiraUrl = `${environment.api.baseUrl}/lareiras`;
     }
 
-    findAll(): Observable<LareiraDTO> {
-        return this.http.get<LareiraDTO>(`${this.lareiraUrl}`);
+    findAll(): Observable<any> {
+        return this.http.get<any>(`${this.lareiraUrl}`);
     }
 
     find(id: number): Observable<LareiraDTO> {

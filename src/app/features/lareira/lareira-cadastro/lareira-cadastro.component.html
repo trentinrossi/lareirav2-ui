@@ -1,1 +1,85 @@
-<p>lareira-cadastro works!</p>
+<div class="ui-g ui-fluid">
+    <p-panel>
+        <p-header>
+            {{ headerPage }}
+        </p-header>
+        <p-messages></p-messages>
+        <div class="ui-g-12">
+            <form [formGroup]="lareiraForm" (ngSubmit)="salvar()" autocomplete="off">
+                <div class="card card-w-title">
+                    <h1>Cadastro</h1>
+                    <div class="ui-g form-group">
+                        <div class="ui-g-12">
+                            <label for="acSimple">Simple</label>
+                        </div>
+                        <div class="ui-g-12 ui-fluid" style="margin-bottom:10px">
+                            <input pInputText type="text" name="nome" id="nome" formControlName="nome" required>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <label for="acAdvanced">Advanced</label>
+                        </div>
+                        <div class="ui-g-12">
+                            <input pInputText type="text" name="endereco" formControlName="endereco">
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-lg-12">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid">
+                        <label for="nome">Nome: </label>
+                        <input pInputText type="text" name="nome" id="nome" formControlName="nome" required>
+                        <div *ngIf="lareiraForm.get('nome')!.invalid && (lareiraForm.get('nome')!.dirty || lareiraForm.get('nome')!.touched)"
+                            class="alert alert-danger">
+                            * Obrigatório informar um nome para Lareira com mais de 5 letras
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid">
+                        <label>Endereço</label>
+                        <input pInputText type="text" name="endereco" formControlName="endereco">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-fluid">
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid">
+                        <label>Bairro</label>
+                        <input pInputText type="text" name="bairro" formControlName="bairro" required>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid" id="">
+                        <label>CEP</label>
+                        <input pInputText type="text" name="cep" formControlName="cep">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-fluid">
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid" id="">
+                        <label>cidade</label>
+                        <input pInputText type="text" name="cidade" formControlName="cidade">
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid" id="">
+                        <label>Estado</label>
+                        <input pInputText type="text" name="estado" formControlName="estado">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-fluid">
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 ui-fluid" id="">
+                        <label>Telefone</label>
+                        <input pInputText type="text" name="telefone" formControlName="telefone">
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <button pButton type="submit" label="Salvar" [disabled]="lareiraForm.invalid"></button>
+                    <label for="">&nbsp;&nbsp;</label>
+                    <a routerLink="/lareira">Voltar para a pesquisa</a>
+                </div>
+            </form>
+        </div>
+    </p-panel>
+</div>

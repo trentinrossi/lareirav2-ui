@@ -100,7 +100,7 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './core/menu/app.menu.service';
-import { MessageService } from 'primeng';
+import { MessageService, ConfirmationService } from 'primeng';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
@@ -174,7 +174,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
         TooltipModule,
         TreeModule,
         TreeTableModule,
-        VirtualScrollerModule
+        VirtualScrollerModule,
+        ConfirmDialogModule
     ],
     declarations: [
         AppComponent,
@@ -209,7 +210,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
         MenuService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        MessageService
+        MessageService,
+        ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

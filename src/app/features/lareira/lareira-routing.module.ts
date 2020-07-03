@@ -15,13 +15,13 @@ const routes: Routes = [
         path: 'nova',
         component: LareiraCadastroComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['ADMIN'] }
+        data: { perfis: ['ADMIN'] }
     },
     {
-        path: ':idLareira',
+        path: ':id',
         component: LareiraCadastroComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['ADMIN'] }
+        data: { perfis: ['ADMIN'] }
     }
 ];
 

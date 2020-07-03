@@ -1,4 +1,4 @@
-export interface LareiraDTO {
+export class LareiraDTO {
     id: number;
     nome: string;
     endereco: string;
