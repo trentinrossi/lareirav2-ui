@@ -28,6 +28,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Cadastros', icon: 'fa fa-fw fa-bars',
                 items: [
                     { label: 'Lareiras', icon: 'fa fa-fw fa-code', routerLink: ['/lareira'] },
+                    { label: 'Tipos de União', icon: 'fa fa-fw fa-code', routerLink: ['/tipo-uniao'] }
                 ]
             },
             {

@@ -1,1 +1,38 @@
-<p>tipo-uniao-cadastro works!</p>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-lg-12">
+        <form [formGroup]="tipoUniaoForm" (ngSubmit)="salvar()" autocomplete="off">
+            <div class="card card-w-title">
+                <h1> {{ headerPage }}</h1>
+                <p-messages></p-messages>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-lg-6">
+                            <label for="nome">Nome</label>
+                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="nome" id="nome"
+                                formControlName="nome" required>
+                            <div *ngIf="tipoUniaoForm.get('nome')!.invalid && (tipoUniaoForm.get('nome')!.dirty || tipoUniaoForm.get('nome')!.touched)"
+                                class="alert alert-danger">
+                                * Obrigatório informar um nome
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-lg-6">
+                            <label for="nome">Descrição</label>
+                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="descricao"
+                                formControlName="descricao">
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12" style="display: flex; align-items: center;">
+                        <div class="ui-g-12 ui-lg-2">
+                            <button pButton type="submit" label="Salvar" [disabled]="tipoUniaoForm.invalid"></button>
+                        </div>
+                        <div class="ui-g-12 ui-lg-2">
+                            <a routerLink="/tipo-uniao">Voltar para a pesquisa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

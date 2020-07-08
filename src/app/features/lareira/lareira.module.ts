@@ -1,7 +1,6 @@
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { PanelModule } from 'primeng/panel';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -21,9 +20,9 @@ import { LareiraCadastroComponent } from './lareira-cadastro/lareira-cadastro.co
         PanelModule,
         MessageModule,
         MessagesModule,
-        LareiraRoutingModule,
         ConfirmDialogModule,
-        TableModule
+        TableModule,
+        LareiraRoutingModule
     ]
 })
 export class LareiraModule { }
