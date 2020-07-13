@@ -15,8 +15,8 @@ export class CasalService {
         this.casalUrl = `${environment.api.baseUrl}/casais`;
     }
 
-    findAll(page: number, linesPerPage: number, orderBy: string, direction: string): Observable<any> {
-        return this.http.get<any>(`${this.casalUrl}?page=${page}&linesPerPage=${linesPerPage}`);
+    findAll(page: number, linesPerPage: number, orderBy: string, direction: string, globalFilter: string): Observable<any> {
+        return this.http.get<any>(`${this.casalUrl}?page=${page}&linesPerPage=${linesPerPage}&globalFilter=${globalFilter}`);
     }
 
     find(id: number): Observable<CasalDTO> {

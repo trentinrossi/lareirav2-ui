@@ -38,7 +38,12 @@ export class CasalPesquisaComponent implements OnInit {
         this.loading = true;
         console.log(event);
         const pagina = event.first / event.rows;
-        this.service.findAll(pagina, event.rows, '', '')
+        let filter = '';
+        event.globalFilter === null ? filter = '' : filter = event.globalFilter;
+        console.log(event.globalFilter);
+
+
+        this.service.findAll(pagina, event.rows, '', '', filter)
             .subscribe(resp => {
                 this.items = resp.content;
                 this.totalElements = resp.totalElements;
