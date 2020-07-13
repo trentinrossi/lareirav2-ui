@@ -15,13 +15,13 @@ const routes: Routes = [
         path: 'novo',
         component: CasalCadastroComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['ADMIN', 'CLIENTE'] }
+        data: { perfis: ['ADMIN', 'CLIENTE'] }
     },
     {
-        path: ':idCasal',
+        path: ':id',
         component: CasalCadastroComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['ADMIN', 'CLIENTE'] }
+        data: { perfis: ['ADMIN', 'CLIENTE'] }
     }
 ];
 

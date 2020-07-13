@@ -1,15 +1,105 @@
-import { Component, OnInit } from '@angular/core';
+import { CasalDTO } from './../../../shared/models/casal.dto';
+import { CasalService } from './../casal.service';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MessageService } from 'primeng';
 
 @Component({
-  selector: 'app-casal-cadastro',
-  templateUrl: './casal-cadastro.component.html',
-  styleUrls: ['./casal-cadastro.component.css']
+    selector: 'app-casal-cadastro',
+    templateUrl: './casal-cadastro.component.html',
+    styleUrls: ['./casal-cadastro.component.css']
 })
 export class CasalCadastroComponent implements OnInit {
 
-  constructor() { }
+    casal: CasalDTO;
+    headerPage = '';
 
-  ngOnInit(): void {
-  }
+    editForm = this.fb.group({
+        id: [],
+        numeroFicha: [null, [Validators.required]],
+        foneFixo: [],
+        dataUniao: [],
+        memorando: [],
+        lareiraId: [null, [Validators.required]],
+        tipoUniaoId: [null, [Validators.required]],
+        casalPadrinhoId: [],
+        marido: [],
+        esposa: [],
+        endereco: [],
+        filhos: []
+    });
+
+    constructor(
+        private service: CasalService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private fb: FormBuilder,
+        private messageService: MessageService,
+        private errorHandler: ErrorHandler
+    ) { }
+
+    ngOnInit(): void {
+
+        const idCasal = +this.route.snapshot.paramMap.get('id');
+
+        this.headerPage = 'Novo Casal';
+
+        // Protege caso não seja retornado o código
+        if (idCasal) {
+            this.headerPage = 'Alterar Casal';
+            this.service.find(idCasal).subscribe(casal => this.editForm.patchValue(casal));
+        } else {
+            this.casal = new CasalDTO();
+        }
+    }
+
+    updateForm(casal: CasalDTO): void {
+        this.editForm.patchValue({
+            id: casal.id,
+            numeroFicha: casal.numeroFicha,
+            foneFixo: casal.foneFixo,
+            dataUniao: casal.dataUniao,
+            memorando: casal.memorando,
+            lareiraId: casal.lareiraId,
+            tipoUniaoId: casal.tipoUniaoId,
+            casalPadrinhoId: casal.casalPadrinhoId,
+            marido: casal.marido,
+            esposa: casal.esposa,
+            endereco: casal.endereco,
+            filhos: casal.filhos
+        });
+    }
+
+    get formControls() { return this.editForm.controls; }
+
+    salvar(form: FormControl) {
+        if (this.editForm.controls.id.value > 0) {
+            this.atualizar();
+        } else {
+            this.inserir();
+        }
+    }
+
+    atualizar() {
+        this.service.update(this.editForm.controls.id.value, this.editForm.value)
+            .subscribe(casal => {
+                this.casal = casal;
+                this.router.navigate(['/casal']);
+            }, (error => {
+                this.errorHandler.handleError(error);
+                this.messageService.add({ severity: 'error', detail: error });
+            }));
+    }
+
+    inserir() {
+        this.service.insert(this.editForm.value)
+            .subscribe(casalAdicionado => {
+                this.router.navigate(['/casal']);
+            }, (error => {
+                this.errorHandler.handleError(error);
+                this.messageService.add({ severity: 'error', detail: error });
+            }));
+    }
 
 }

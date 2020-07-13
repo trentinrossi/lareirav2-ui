@@ -1,1 +1,38 @@
-<p>casal-cadastro works!</p>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-lg-12">
+        <form [formGroup]="editForm" (ngSubmit)="salvar()" autocomplete="off">
+            <div class="card card-w-title">
+                <h1> {{ headerPage }}</h1>
+                <p-messages></p-messages>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <div class="ui-g-12 ui-lg-6">
+                            <label for="nome">numeroFicha</label>
+                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="numeroFicha" id="numeroFicha"
+                                formControlName="numeroFicha" required>
+                            <div *ngIf="editForm.get('numeroFicha')!.invalid && (editForm.get('numeroFicha')!.dirty || editForm.get('numeroFicha')!.touched)"
+                                class="alert alert-danger">
+                                * Obrigatório informar um nome
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-lg-6">
+                            <label for="nome">Descrição</label>
+                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="descricao"
+                                formControlName="descricao">
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12" style="display: flex; align-items: center;">
+                        <div class="ui-g-12 ui-lg-2">
+                            <button pButton type="submit" label="Salvar" [disabled]="editForm.invalid"></button>
+                        </div>
+                        <div class="ui-g-12 ui-lg-2">
+                            <a routerLink="/casal">Voltar para a pesquisa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
