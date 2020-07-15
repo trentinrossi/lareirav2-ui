@@ -48,7 +48,7 @@ export class TipoUniaoCadastroComponent implements OnInit {
 
     get formControls() { return this.tipoUniaoForm.controls; }
 
-    salvar(form: FormControl) {
+    salvar() {
         if (this.tipoUniaoForm.controls.id.value > 0) {
             this.atualizarTipoUniao();
         } else {

@@ -6,5 +6,5 @@ export class UserDTO {
     descricao: string;
     ativo: boolean;
     token: string;
-    perfis: [];
+    perfis: any[];
 }

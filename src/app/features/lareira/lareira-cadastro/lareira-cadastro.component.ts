@@ -49,7 +49,7 @@ export class LareiraCadastroComponent implements OnInit {
 
     get formControls() { return this.lareiraForm.controls; }
 
-    salvar(form: FormControl) {
+    salvar() {
         if (this.lareiraForm.controls.id.value > 0) {
             this.atualizarLareira();
         } else {

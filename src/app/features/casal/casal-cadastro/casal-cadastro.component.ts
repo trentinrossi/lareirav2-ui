@@ -144,7 +144,7 @@ export class CasalCadastroComponent implements OnInit {
 
     get formControls() { return this.editForm.controls; }
 
-    salvar(form: FormControl) {
+    salvar() {
         if (this.editForm.controls.id.value > 0) {
             this.atualizar();
         } else {
