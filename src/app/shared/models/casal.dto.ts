@@ -13,9 +13,9 @@ export class CasalDTO {
     lareiraId: number;
     tipoUniaoId: number;
     casalPadrinhoId: number;
-    casalPadrinho: CasalDTO[];
-    lareira: LareiraDTO[];
-    tipoUniao: TipoUniaoDTO[];
+    casalPadrinho: CasalDTO;
+    lareira: LareiraDTO;
+    tipoUniao: TipoUniaoDTO;
     marido: PessoaFisicaDTO;
     esposa: PessoaFisicaDTO;
     endereco: EnderecoDTO;

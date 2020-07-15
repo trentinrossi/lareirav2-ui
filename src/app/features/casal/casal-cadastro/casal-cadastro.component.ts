@@ -34,8 +34,26 @@ export class CasalCadastroComponent implements OnInit {
         casalPadrinhoId: [],
         casalPadrinho: [],
         lareira: [],
-        marido: [],
-        esposa: [],
+        marido: this.fb.group({
+            dataNascimento: [],
+            email: [],
+            id: [],
+            nome: [],
+            problemaSaude: [],
+            profissao: [],
+            sobrenome: [],
+            telCelular: []
+        }),
+        esposa: this.fb.group({
+            dataNascimento: [],
+            email: [],
+            id: [],
+            nome: [],
+            problemaSaude: [],
+            profissao: [],
+            sobrenome: [],
+            telCelular: []
+        }),
         endereco: this.fb.group({
             bairro: [],
             cep: [],
@@ -68,7 +86,7 @@ export class CasalCadastroComponent implements OnInit {
         // Protege caso não seja retornado o código
         if (idCasal) {
             this.headerPage = 'Alterar Casal';
-            this.service.find(idCasal).subscribe(casal => this.editForm.patchValue(casal));
+            this.service.find(idCasal).subscribe(casal => this.updateForm(casal));
         } else {
             this.casal = new CasalDTO();
         }
@@ -111,8 +129,8 @@ export class CasalCadastroComponent implements OnInit {
             foneFixo: casal.foneFixo,
             dataUniao: casal.dataUniao,
             memorando: casal.memorando,
-            lareiraId: casal.lareiraId,
-            tipoUniaoId: casal.tipoUniaoId,
+            lareiraId: casal.lareira.id,
+            tipoUniaoId: casal.tipoUniao.id,
             tipoUniao: casal.tipoUniao,
             casalPadrinhoId: casal.casalPadrinhoId,
             casalPadrinho: casal.casalPadrinho,

@@ -1,67 +1,66 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-lg-12">
+<div class="ui-fluid">
+    <div class="ui-g">
         <form [formGroup]="editForm" (ngSubmit)="salvar()" autocomplete="off">
             <div class="card card-w-title">
                 <h1> {{ headerPage }}</h1>
                 <p-messages></p-messages>
-                <div class="ui-g form-group">
 
-                    <div class="ui-g-12">
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="numeroFicha">Número Ficha</label>
-                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="numeroFicha" id="numeroFicha"
-                                formControlName="numeroFicha" required>
-                            <div *ngIf="editForm.get('numeroFicha')!.invalid && (editForm.get('numeroFicha')!.dirty || editForm.get('numeroFicha')!.touched)"
-                                class="alert alert-danger">
-                                * Obrigatório informar o número da ficha
-                            </div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="numeroFicha">Número Ficha</label>
+                        <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="numeroFicha" id="numeroFicha"
+                            formControlName="numeroFicha" required>
+                        <div *ngIf="editForm.get('numeroFicha')!.invalid && (editForm.get('numeroFicha')!.dirty || editForm.get('numeroFicha')!.touched)"
+                            class="alert alert-danger">
+                            * Obrigatório informar o número da ficha
                         </div>
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="lareiraId" required>Lareira em que pertence</label>
-                            <p-autoComplete formControlName="lareira" [suggestions]="lareiras" field="nome" (completeMethod)="searchLareiras($event)"
-                                [dropdown]="true" (onSelect)="lareiraSelecionada($event)"></p-autoComplete>
+                    </div>
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="lareiraId" required>Lareira em que pertence</label>
+                        <p-autoComplete formControlName="lareira" [suggestions]="lareiras" field="nome" (completeMethod)="searchLareiras($event)"
+                            [dropdown]="true" (onSelect)="lareiraSelecionada($event)" required></p-autoComplete>
+                        <div *ngIf="editForm.get('lareiraId')!.invalid && (editForm.get('lareiraId')!.dirty || editForm.get('lareiraId')!.touched)"
+                            class="alert alert-danger">
+                            * Obrigatório informar a Lareira
                         </div>
                     </div>
 
-                    <div class="ui-g-12">
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="foneFixo">Telefone fixo</label>
-                            <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="foneFixo"
-                                formControlName="foneFixo">
-                        </div>
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="casalPadrinhoId" required>Casal Padrinho</label>
-                            <p-autoComplete formControlName="casalPadrinho" [suggestions]="casaisPadrinhos" field="marido.nome"
-                                (completeMethod)="searchCasais($event)" [dropdown]="true" (onSelect)="casalPadrinhoSelecionado($event)">
-                                <ng-template let-c pTemplate="item">
-                                    <div>{{ c.id }} - {{ c.marido.nome }} da {{ c.esposa.nome }} & {{ c.esposa.nome }} do {{ c.marido.nome }}</div>
-                                </ng-template>
-                            </p-autoComplete>
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="foneFixo">Telefone fixo</label>
+                        <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="foneFixo" formControlName="foneFixo">
+                    </div>
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="casalPadrinhoId" required>Casal Padrinho</label>
+                        <p-autoComplete formControlName="casalPadrinho" [suggestions]="casaisPadrinhos" field="marido.nome"
+                            (completeMethod)="searchCasais($event)" [dropdown]="true" (onSelect)="casalPadrinhoSelecionado($event)">
+                            <ng-template let-c pTemplate="item">
+                                <div>{{ c.id }} - {{ c.marido.nome }} da {{ c.esposa.nome }} & {{ c.esposa.nome }} do {{ c.marido.nome }}</div>
+                            </ng-template>
+                        </p-autoComplete>
+                    </div>
+
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="dataUniao">Data União</label>
+                        <p-calendar formControlName="dataUniao" name="dataUniao" id="dataUniao" dateFormat="yy-mm-dd"></p-calendar>
+                    </div>
+                    <div class="ui-g-12 ui-lg-6">
+                        <label for="tipoUniaoId" required>Tipo da União</label>
+                        <p-autoComplete formControlName="tipoUniao" [suggestions]="tiposUniao" id="tipoUniaoId" field="nome"
+                            (completeMethod)="searchTiposUniao($event)" [dropdown]="true" (onSelect)="tipoUniaoSelecionado($event)" required></p-autoComplete>
+                        <div *ngIf="editForm.get('tipoUniao')!.invalid && (editForm.get('tipoUniao')!.dirty || editForm.get('tipoUniao')!.touched)"
+                            class="alert alert-danger">
+                            * Obrigatório informar o Tipo de União
                         </div>
                     </div>
 
-                    <div class="ui-g-12">
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="dataUniao">Data União</label>
-                            <p-calendar formControlName="dataUniao" name="dataUniao" id="dataUniao" dateFormat="yy-mm-dd"></p-calendar>
-                        </div>
-                        <div class="ui-g-12 ui-lg-6">
-                            <label for="tipoUniaoId" required>Tipo da União</label>
-                            <p-autoComplete formControlName="tipoUniao" [suggestions]="tiposUniao" id="tipoUniaoId" field="nome"
-                                (completeMethod)="searchTiposUniao($event)" [dropdown]="true" (onSelect)="tipoUniaoSelecionado($event)"></p-autoComplete>
-                        </div>
+                    <div class="ui-g-12 ui-lg-12">
+                        <label for="memorando">Memorando do Casal</label>
+                        <textarea pInputTextarea name="memorando" id="memorando" [rows]="6" formControlName="memorando"></textarea>
                     </div>
 
-                    <div class="ui-g-12">
-                        <div class="ui-g-12 ui-lg-12">
-                            <label for="memorando">Memorando do Casal</label>
-                            <textarea pInputTextarea name="memorando" id="memorando" [rows]="6" formControlName="memorando"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="ui-g-12">
-                        <div class="ui-lg-12" formGroupName="endereco">
-                            <p-panel header="Endereço">
+                    <div class="ui-g-12" formGroupName="endereco">
+                        <p-panel header="Endereço do Casal">
+                            <div class="ui-g">
                                 <div class="ui-md-6 ui-lg-6">
                                     <label for="cep">CEP</label>
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="cep"
@@ -72,6 +71,8 @@
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="estado"
                                         formControlName="estado">
                                 </div>
+                            </div>
+                            <div class="ui-g">
                                 <div class="ui-md-6 ui-lg-6">
                                     <label for="cidade">Cidade</label>
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="cidade"
@@ -82,6 +83,9 @@
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="bairro"
                                         formControlName="bairro">
                                 </div>
+                            </div>
+
+                            <div class="ui-g">
                                 <div class="ui-md-6 ui-lg-6">
                                     <label for="rua">Rua</label>
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="rua"
@@ -92,21 +96,106 @@
                                     <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="numero"
                                         formControlName="numero">
                                 </div>
-                            </p-panel>
-                        </div>
+                            </div>
+                        </p-panel>
                     </div>
 
-                    <div class="ui-g-12">
-                        <div class="ui-g-12 ui-lg-6">
-                            <p-panel header="Dados do Marido">
+                    <div class="ui-g-12" formGroupName="marido">
+                        <p-panel header="Dados do Marido">
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="nome">Nome</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="nome"
+                                        formControlName="nome">
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="sobrenome">Sobrenome</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="sobrenome"
+                                        formControlName="sobrenome">
+                                </div>
+                            </div>
 
-                            </p-panel>
-                        </div>
-                        <div class="ui-g-12 ui-lg-6">
-                            <p-panel header="Dados da Esposa">
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="dataNascimento">Data Nacimento</label>
+                                    <p-calendar formControlName="dataNascimento" name="dataNascimento" id="dataNascimento" dateFormat="yy-mm-dd"></p-calendar>
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="email">E-mail</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="email" name="email"
+                                        formControlName="email">
+                                </div>
+                            </div>
 
-                            </p-panel>
-                        </div>
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="telCelular">Tel Celular</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="telCelular"
+                                        formControlName="telCelular">
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="profissao">Profissão</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="profissao" name="profissao"
+                                        formControlName="profissao">
+                                </div>
+                            </div>
+
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-lg-12">
+                                    <label for="problemaSaude">Problemas de Saúde</label>
+                                    <textarea pInputTextarea name="problemaSaude" id="problemaSaude" [rows]="3" formControlName="problemaSaude"></textarea>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+
+                    <div class="ui-g-12" formGroupName="esposa">
+                        <p-panel header="Dados da Esposa">
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="nome">Nome</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="nome"
+                                        formControlName="nome">
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="sobrenome">Sobrenome</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="sobrenome"
+                                        formControlName="sobrenome">
+                                </div>
+                            </div>
+
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="dataNascimento">Data Nacimento</label>
+                                    <p-calendar formControlName="dataNascimento" name="dataNascimento" id="dataNascimento" dateFormat="yy-mm-dd"></p-calendar>
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="email">E-mail</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="email" name="email"
+                                        formControlName="email">
+                                </div>
+                            </div>
+
+                            <div class="ui-g">
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="telCelular">Tel Celular</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="text" name="telCelular"
+                                        formControlName="telCelular">
+                                </div>
+                                <div class="ui-md-6 ui-lg-6">
+                                    <label for="profissao">Profissão</label>
+                                    <input class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText type="profissao" name="profissao"
+                                        formControlName="profissao">
+                                </div>
+                            </div>
+
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-lg-12">
+                                    <label for="problemaSaude">Problemas de Saúde</label>
+                                    <textarea pInputTextarea name="problemaSaude" id="problemaSaude" [rows]="3" formControlName="problemaSaude"></textarea>
+                                </div>
+                            </div>
+                        </p-panel>
                     </div>
 
                     <div class="ui-g-12" style="display: flex; align-items: center;">
