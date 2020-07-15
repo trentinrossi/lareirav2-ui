@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
 import { CasalRoutingModule } from './casal-routing.module';
 import { CasalPesquisaComponent } from './casal-pesquisa/casal-pesquisa.component';
 import { CasalCadastroComponent } from './casal-cadastro/casal-cadastro.component';
@@ -19,6 +23,9 @@ import { PanelModule, MessagesModule, MessageModule, ConfirmDialogModule, TableM
         MessageModule,
         ConfirmDialogModule,
         TableModule,
+        CalendarModule,
+        InputTextareaModule,
+        AutoCompleteModule,
         CasalRoutingModule
     ]
 })

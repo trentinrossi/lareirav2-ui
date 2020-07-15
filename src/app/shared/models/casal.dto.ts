@@ -1,3 +1,5 @@
+import { TipoUniaoDTO } from './tipo-uniao.dto';
+import { LareiraDTO } from './lareira.dto';
 import { FilhoDTO } from './filho.dto';
 import { PessoaFisicaDTO } from './pessoa-fisica.dto';
 import { EnderecoDTO } from './endereco.dto';
@@ -11,6 +13,9 @@ export class CasalDTO {
     lareiraId: number;
     tipoUniaoId: number;
     casalPadrinhoId: number;
+    casalPadrinho: CasalDTO[];
+    lareira: LareiraDTO[];
+    tipoUniao: TipoUniaoDTO[];
     marido: PessoaFisicaDTO;
     esposa: PessoaFisicaDTO;
     endereco: EnderecoDTO;

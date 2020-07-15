@@ -1,9 +1,13 @@
+import { TipoUniaoDTO } from './../../../shared/models/tipo-uniao.dto';
+import { TipoUniaoService } from './../../tipo-uniao/tipo-uniao.service';
+import { LareiraDTO } from './../../../shared/models/lareira.dto';
 import { CasalDTO } from './../../../shared/models/casal.dto';
 import { CasalService } from './../casal.service';
 import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MessageService } from 'primeng';
+import { LareiraService } from '../../lareira/lareira.service';
 
 @Component({
     selector: 'app-casal-cadastro',
@@ -13,6 +17,9 @@ import { MessageService } from 'primeng';
 export class CasalCadastroComponent implements OnInit {
 
     casal: CasalDTO;
+    lareiras: LareiraDTO[];
+    casaisPadrinhos: CasalDTO[];
+    tiposUniao: TipoUniaoDTO[];
     headerPage = '';
 
     editForm = this.fb.group({
@@ -23,15 +30,28 @@ export class CasalCadastroComponent implements OnInit {
         memorando: [],
         lareiraId: [null, [Validators.required]],
         tipoUniaoId: [null, [Validators.required]],
+        tipoUniao: [],
         casalPadrinhoId: [],
+        casalPadrinho: [],
+        lareira: [],
         marido: [],
         esposa: [],
-        endereco: [],
+        endereco: this.fb.group({
+            bairro: [],
+            cep: [],
+            cidade: [],
+            estado: [],
+            id: [],
+            numero: [],
+            rua: []
+        }),
         filhos: []
     });
 
     constructor(
         private service: CasalService,
+        private lareiraService: LareiraService,
+        private tipoUniaoService: TipoUniaoService,
         private route: ActivatedRoute,
         private router: Router,
         private fb: FormBuilder,
@@ -54,6 +74,36 @@ export class CasalCadastroComponent implements OnInit {
         }
     }
 
+    searchLareiras(event) {
+        this.lareiraService.findAll().subscribe(data => {
+            this.lareiras = data.content;
+        });
+    }
+
+    lareiraSelecionada(event) {
+        this.editForm.controls.lareiraId.setValue(event.id);
+    }
+
+    searchTiposUniao(event) {
+        this.tipoUniaoService.findAll().subscribe(data => {
+            this.tiposUniao = data.content;
+        });
+    }
+
+    tipoUniaoSelecionado(event) {
+        this.editForm.controls.tipoUniaoId.setValue(event.id);
+    }
+
+    searchCasais(event) {
+        this.service.findAll(0, 1000, 'id', 'ASC', '').subscribe(data => {
+            this.casaisPadrinhos = data.content;
+        });
+    }
+
+    casalPadrinhoSelecionado(event) {
+        this.editForm.controls.casalPadrinhoId.setValue(event.id);
+    }
+
     updateForm(casal: CasalDTO): void {
         this.editForm.patchValue({
             id: casal.id,
@@ -63,7 +113,10 @@ export class CasalCadastroComponent implements OnInit {
             memorando: casal.memorando,
             lareiraId: casal.lareiraId,
             tipoUniaoId: casal.tipoUniaoId,
+            tipoUniao: casal.tipoUniao,
             casalPadrinhoId: casal.casalPadrinhoId,
+            casalPadrinho: casal.casalPadrinho,
+            lareira: casal.lareira,
             marido: casal.marido,
             esposa: casal.esposa,
             endereco: casal.endereco,
